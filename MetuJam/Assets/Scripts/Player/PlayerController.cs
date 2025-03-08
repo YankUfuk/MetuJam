@@ -5,11 +5,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private float moveSpeed;
     [SerializeField] private float jumppVelocity;
     [SerializeField] private Vector2 velocity;
+
     private void Update()
     {
         Vector2 pos = transform.position;
-        pos.y += velocity.y * Time.deltaTime;
-        velocity.y += TimeController.gravity * Time.deltaTime;
+        pos.y += velocity.y * UnityEngine.Time.deltaTime;
+        velocity.y += TimeController.gravity * UnityEngine.Time.deltaTime;
 
         if (velocity.y < 1f)
         {
@@ -18,21 +19,21 @@ public class PlayerController : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.W))
         {
-            velocity.y = jumppVelocity;
+            velocity.y = jumppVelocity * UnityEngine.Time.deltaTime;
         }
         if (Input.GetKey(KeyCode.A))
         {
-            pos.x -= moveSpeed * Time.deltaTime;
+            pos.x -= moveSpeed;
         }
         else if (Input.GetKey(KeyCode.D))
         {
-            pos.x += moveSpeed * Time.deltaTime; 
+            pos.x += moveSpeed * UnityEngine.Time.deltaTime;
         }
         else
         {
-            velocity.x = 0; 
+            velocity.x = 0;
         }
 
-        transform.position = pos; 
+        transform.position = pos;
     }
 }
